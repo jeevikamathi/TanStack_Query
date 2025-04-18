@@ -1,7 +1,11 @@
 import React from "react";
+import AddPost from "../components/AddPost";
 const PostList = () => {
     return(
-        <div>PostList</div>
+        <div>
+            <AddPost />
+            List
+        </div>
     )
 }
 export default PostList;

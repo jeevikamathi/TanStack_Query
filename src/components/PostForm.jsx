@@ -24,9 +24,10 @@ const PostForm = ({ onSubmit, initialValue = {} }) => {
       />
     </div>
   );
-  console.log(post)
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(post);
     onSubmit(post);
     setPost({
       title: "",
