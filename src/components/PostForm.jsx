@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const PostForm = ({ onSubmit, initialValue = {} }) => {
+const PostForm = ({ onSubmit, initialValue = { title: "", body: "" } }) => {
   const [post, setPost] = useState({
-    title: initialValue.title || "",
-    body: initialValue.body || "",
+    title: initialValue.title,
+    body: initialValue.body,
   });
 
   const handleChangeInput = (e) => {
@@ -24,11 +24,18 @@ const PostForm = ({ onSubmit, initialValue = {} }) => {
       />
     </div>
   );
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(post);
-    onSubmit(post);
+
+    // Check if onSubmit is passed
+    if (onSubmit && typeof onSubmit === "function") {
+      onSubmit(post); // Pass post to the parent onSubmit handler
+    } else {
+      console.error("onSubmit is not a function");
+    }
+
+    // Reset form after submission
     setPost({
       title: "",
       body: "",
